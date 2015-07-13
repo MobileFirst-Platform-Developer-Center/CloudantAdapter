@@ -1,13 +1,13 @@
 IBM MobileFirst Platform Foundation
 ===
-### Sample Name
-
+### Cloudant adapter
+The sample module contains an application that demonstrates the use of the adapter to store, list, and query a set of names and ages in a Cloudant-hosted database.
 
 ### Usage
-Follow the instructions in the tutorials listed below.
+Follow the instructions in the tutorial(s) listed below.
 
 ### Tutorials
-
+https://developer.ibm.com/mobilefirstplatform/documentation/getting-started-7-1/foundation/server-side-development-category/cloudant/
 
 ### Supported Levels
 IBM MobileFirst Platform Foundation 7.1
