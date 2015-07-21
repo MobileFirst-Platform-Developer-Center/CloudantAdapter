@@ -11,13 +11,46 @@
 
 */
 
-body {
-	margin: 0;
-	font-family: sans-serif;
-	background-color: #ccc;
+html, body {
+	min-height:100%;
+	max-height:100%;
+	height:100%;
+	overflow:hidden;
+	display:block;
+	margin:0;
+	padding:0;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  	font-weight: 300;
 	text-align: center;
+	position:relative;
 }
-
+#container {
+	height: 60%;
+	margin-top: 0;
+	overflow: scroll;
+	display: block;
+	z-index: 1;
+	margin-top: 42px;
+	padding-bottom:20px;
+}
+#consoleContainer {
+	background: #000;
+	height: 30%;
+	display: block;
+	color: #FFF;
+	z-index: 100;
+	max-height: 30%;
+	overflow-y: scroll;
+	position:absolute;
+	width:100%;
+	bottom:0;
+}
+#console {
+	padding:10px;
+	font-family:monospace;
+	text-align:left;
+	white-space:pre-wrap;
+}
 #header {
 	position: fixed;
 	width: 100%;
@@ -29,18 +62,12 @@ body {
 	height: 38px;
 	line-height: 38px;
 	border-bottom: 1px solid white;
+	z-index:100;
 }
 
-#status-field {
-	position: fixed;
-	width: 100%;
-	top: 39px;
-	background-color: #1D4D74;
-	color: #F9FAFB;
-	font-size: 14px;
-	height: 20px;
-	line-height: 20px;
-	border-bottom: 1px solid white;
+a, abbr, address, article, aside, audio, b, blockquote, body, canvas, caption, cite, code, dd, del, details, dfn, dialog, div, dl, dt, em, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, p, pre, q, samp, section, small, span, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, ul, var, video {
+	margin: 0;
+	padding: 0;
 }
 
 button {
@@ -49,10 +76,41 @@ button {
 	font-size: 0.8em;
 	margin: 0.5em 0 0.2em 0;
 	background-color: #eee;
-	
+
 }
+
+input {
+	width: 86%;
+	height: 6%;
+	font-size: 0.8em;
+	margin: 0.2em 0 0.2em 0;
+	text-align: center;
+	height: 2.5em;
+}
+
+table {
+	margin-top: 0.2em;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: left;
+	border-collapse: collapse;
+	background-color:none;
+	padding: 4px;
+	border: 0px solid black;
+}
+
+td {
+	padding: 3px;
+	margin-bottom: 30px;
+	border: 1px solid #2F2F2F;
+}
+
+tr {
+	border: 1px solid #000;
+}
+
 .button-line-2 {
-	width: 44%;
+	width: 45%;
 	font-size: 0.8em;
 	text-align: center;
 	display: inline-block;
@@ -65,57 +123,18 @@ button {
 	display: inline-block;
 }
 
-input {
-	width: 88%;
-	height: 6%;
-	font-size: 0.8em;
-	margin: 0.2em 0 0.2em 0;
-	padding-left: 5px;
-	height: 2.5em;
-}
 .input-line-2 {
-	width: 42%;
+	width: 40%;
 	font-size: 0.8em;
-	padding-left: 5px;
+	text-align: center;
 	display: inline-block;
 }
+
 .input-line-3 {
 	width: 25%;
 	font-size: 0.8em;
 	text-align: center;
 	display: inline-block;
-}
-
-#table_wrapper {
-	margin-top: 70px;
-	margin-bottom: 10px;
-}
-
-table {
-	margin: 30px auto 10px auto;
-	text-align: center;
-	border-collapse: collapse;
-	background-color: #ddd;
-	padding: 4px;
-	border: 1px solid black;
-	color: black;
-	font-size: 14px;
-	position: inherit;	
-}
-
-th {
-	border: 1px solid black;
-	background-color: #eee;	
-}
-
-tr {
-	border: 1px solid black;
-}
-
-td {
-	padding: 3px;
-	margin-bottom: 30px;
-	border: 1px solid black;
 }
 
 hr {
@@ -126,6 +145,6 @@ hr {
   background: black;
 }
 
-.close_table {
-	height: 38px;
+.clear {
+  clear:both;
 }

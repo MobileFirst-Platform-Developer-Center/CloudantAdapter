@@ -13,9 +13,6 @@
 
 /*globals WL, WLJQ, WL_*/
 
-var mainLogMessage = null;
-var mainShowTable = null;
-
 function wlCommonInit () {
 
 (function (WL, jQuery, lodash) {
@@ -44,10 +41,24 @@ function wlCommonInit () {
 		COUNT_QUERY_ERROR_MSG = 'FIND_BY_QUERY_EXPECTED_A_STRING',
 		COUNT_QUERY_MSG = "Documents in the collection with name = ";
 
+	// //Log messages to the console and status field
+	// var _logMessage = function (msg, id) {
+	// 	//Get reference to the status field
+	// 	var status = _.isUndefined(id) ? $('div#status-field') : $(id);
+	//
+	// 	//Put message in the status div
+	// 	status.text(msg);
+	//
+	// 	//Log message to the console
+	// 	WL.Logger.info(msg);
+	// };
+
 	//Log messages to the console and status field
-	var _logMessage = function (msg, id) {
+	var logMessage = function (msg, id) {
 		//Get reference to the status field
-		var status = _.isUndefined(id) ? $('div#status-field') : $(id);
+		var status = _.isUndefined(id) ? $('div#console') : $(id);
+
+		status.css("color", "#FFF");
 
 		//Put message in the status div
 		status.text(msg);
@@ -55,53 +66,34 @@ function wlCommonInit () {
 		//Log message to the console
 		WL.Logger.info(msg);
 	};
-	
-	WL.App.hideSplashScreen(); 
 
-	mainLogMessage = _logMessage;
-	
-	var _showTable = function (arr) {
+	WL.App.hideSplashScreen();
+
+	//Show JSONStore document in a table
+	var showResults = function (arr) {
 
 		if (_.isArray(arr) && arr.length < 1) {
-			return _logMessage(EMPTY_TABLE_MSG);
+			return logMessage(EMPTY_TABLE_MSG);
 		}
 
 		//Log to the console
 		WL.Logger.ctx({stringify: true, pretty: true}).info(arr);
 
-		var
-			//Get reference to the status field
-			status = $('div#status-field'),
+		//Get reference to the status field
+		var status = $('div#console');
 
-			//Table HTML template
-			table = [
-				'<table id="user_table" >',
-					'<tr>',
-						'<td><b>_id</b></td>',
-						'<td><b>name</b></td>',
-						'<td><b>age</b></td>',
-						'<td><b>json</b></td>',
-					'</tr>',
-					'<% _.each(people, function(person) { %>',
-						'<tr>',
-							'<td> <%= person._id %> </td>',
-							'<td> <%= person.json.name %> </td>',
-							'<td><%= person.json.age %></td>',
-							'<td><%= JSON.stringify(person.json) %></td>',
-						'</tr>',
-					'<% }); %>',
-				'</table>'
-			].join(''),
+		//list HTML template
+		var template = '<h2>Results</h2>'
+			+'<% _.each(people, function(person) { %>'
+				+'<div><%= JSON.stringify(person, null, 2) %></div>'
+			+'<% }); %>';
 
-			//Populate the HTML template with content
-			html = _.template(table, {people : arr});
+		status.css("color", "#FFF");
 
 		//Put the generated HTML table into the DOM
-		status.html(html);
+		status.html(_.template(template, {people : arr}));
 	};
 
-	mainShowTable = _showTable;
-	
 	//Scroll to the top every time a button is clicked
 	$('button').on('click', function () {
 		$('html, body').animate({scrollTop: 0}, 'slow');
@@ -115,47 +107,47 @@ function wlCommonInit () {
 			if (result.invocationResult.statusCode != 201) {
 				WL.Logger.info("DB Create failed due to status code: " + result.invocationResult.statusCode);
 				if (result.invocationResult) {
-					_logMessage(result.invocationResult.reason);
+					logMessage(result.invocationResult.reason);
 				} else {
-					_logMessage("DB Create failed");
+					logMessage("DB Create failed");
 				}
 			} else {
 				WL.Logger.info("DB Create succeeded");
-				
+
 				var docCreateSuccess = function (result) {
 					if (result.invocationResult.statusCode != 201) {
 						if (result.invocationResult) {
-							_logMessage(result.invocationResult.reason);
+							logMessage(result.invocationResult.reason);
 						}
 					} else {
 						WL.Logger.info("DB Create succeeded");
-					  _logMessage(INIT_MSG);
-					  
+					  logMessage(INIT_MSG);
+
 					}
 				};
-				
+
 				var docCreateFailure = function(result) {
 					if (result.invocationResult) {
-						_logMessage(result.invocationResult.reason);
+						logMessage(result.invocationResult.reason);
 					}
 				};
-				
+
 				createDesignDoc(PEOPLE_COLLECTION_NAME, docCreateSuccess, docCreateFailure);
-			  _logMessage(INIT_MSG);
+			  logMessage(INIT_MSG);
 			}
 		};
-		
+
 		var dbCreateFailure = function(result) {
 			WL.Logger.info("DB Create failed");
 			if (result.invocationResult) {
-				_logMessage(result.invocationResult.reason);
+				logMessage(result.invocationResult.reason);
 			} else {
-				_logMessage("DB Create failed");
+				logMessage("DB Create failed");
 			}
 			};
-		
+
 		createDB(PEOPLE_COLLECTION_NAME, dbCreateSuccess, dbCreateFailure);
-		
+
 
 	});
 
@@ -165,21 +157,21 @@ function wlCommonInit () {
 		var dbDeleteSuccess = function (result) {
 		if (result.invocationResult.statusCode != 200) {
 			WL.Logger.info("DB Delete failed due to status code: " + result.invocationResult.statusCode);
-			_logMessage(result.invocationResult.reason);
+			logMessage(result.invocationResult.reason);
 		} else {
 			WL.Logger.info("DB Delete succeeded");
-			_logMessage(DESTROY_MSG);
+			logMessage(DESTROY_MSG);
 		}
 	};
-	
+
 	var dbDeleteFailure = function(result) {
 		WL.Logger.info("DB Delete failed");
-		_logMessage(result.invocationResult.reason);
+		logMessage(result.invocationResult.reason);
 	};
-		
+
 		//Create Cloudant DB
 		deleteDB(PEOPLE_COLLECTION_NAME, dbDeleteSuccess, dbDeleteFailure);
-		
+
 	});
 
 	//add
@@ -210,21 +202,21 @@ function wlCommonInit () {
 			var addDataSuccess = function (result) {
 				if (result.invocationResult.statusCode != 201) {
 					WL.Logger.info("Add data failed due to status code: " + result.invocationResult.statusCode);
-					_logMessage(result.invocationResult.reason);
+					logMessage(result.invocationResult.reason);
 				} else {
 					WL.Logger.info("Add data succeeded");
-					_logMessage(ADD_MSG);
+					logMessage(ADD_MSG);
 				}
 			};
-			
+
 			var addDataFailure = function(result) {
 				WL.Logger.info("Add data failed");
-				_logMessage(result.invocationResult.reason);
+				logMessage(result.invocationResult.reason);
 			};
-			
+
 			createDoc(PEOPLE_COLLECTION_NAME, data, addDataSuccess, addDataFailure);
-			
-			
+
+
 			//Clear the input fields
 			nameField.val('');
 			ageField.val('');
@@ -255,7 +247,7 @@ function wlCommonInit () {
 
 		//Check if some value was passed
 		if (_.isEmpty(query)) {
-			return _logMessage(NAME_FIELD_EMPTY_MSG);
+			return logMessage(NAME_FIELD_EMPTY_MSG);
 		}
 
 		//Create optional options object
@@ -274,7 +266,7 @@ function wlCommonInit () {
 		var queryNameSuccess = function (result) {
 			if (result.invocationResult.statusCode != 200) {
 				WL.Logger.info("Find data failed due to status code: " + result.invocationResult.statusCode);
-				_logMessage(result.invocationResult.reason);
+				logMessage(result.invocationResult.reason);
 			} else {
 				WL.Logger.info("Find data succeeded");
 				if (result !== null && result.invocationResult !== null && result.invocationResult.total_rows !== null) {
@@ -296,18 +288,18 @@ function wlCommonInit () {
 							output.push(obj);
 						}
 					}
-					mainShowTable(output);
+					showResults(output);
 				}
 			}
 		};
-		
+
 		var queryNameFailure = function(result) {
 			WL.Logger.info("Find data failed");
-			_logMessage(result.invocationResult.reason);
+			logMessage(result.invocationResult.reason);
 		};
-		
+
 		queryName(PEOPLE_COLLECTION_NAME, query.name, options.limit, queryNameSuccess, queryNameFailure);
-		
+
 	});
 
 	//find-age
@@ -333,7 +325,7 @@ function wlCommonInit () {
 
 		//Check if some value was passed
 		if (_.isEmpty(query)) {
-			return _logMessage(AGE_FIELD_EMPTY_MSG);
+			return logMessage(AGE_FIELD_EMPTY_MSG);
 		}
 
 		//Optional options object to do exact match
@@ -349,12 +341,12 @@ function wlCommonInit () {
 			options.offset = offset;
 		}
 
-			
-			
+
+
 			var queryAgeSuccess = function (result) {
 				if (result.invocationResult.statusCode != 200) {
 					WL.Logger.info("Find data failed due to status code: " + result.invocationResult.statusCode);
-					_logMessage(result.invocationResult.reason);
+					logMessage(result.invocationResult.reason);
 				} else {
 					WL.Logger.info("Find data succeeded");
 					if (result !== null && result.invocationResult !== null && result.invocationResult.total_rows !== null) {
@@ -376,24 +368,24 @@ function wlCommonInit () {
 								output.push(obj);
 							}
 						}
-						mainShowTable(output);
+						showResults(output);
 					}
 				}
 			};
-			
+
 			var queryAgeFailure = function(result) {
 				WL.Logger.info("Find data failed");
-				_logMessage(result.invocationResult.reason);
+				logMessage(result.invocationResult.reason);
 			};
-			
+
 			queryAge(PEOPLE_COLLECTION_NAME, query.age, options.limit, queryAgeSuccess, queryAgeFailure);
-			
+
 			//Clear the input fields
 			searchFieldDOM.val('');
 			limitField.val('');
 			offsetField.val('');
 
-		
+
 	});
 
 	//find-all
@@ -423,7 +415,7 @@ function wlCommonInit () {
 		var findAllSuccess = function (result) {
 			if (result.invocationResult.statusCode != 200) {
 				WL.Logger.info("Find data failed due to status code: " + result.invocationResult.statusCode);
-				_logMessage(result.invocationResult.reason);
+				logMessage(result.invocationResult.reason);
 			} else {
 				WL.Logger.info("Find data succeeded");
 				if (result !== null && result.invocationResult !== null && result.invocationResult.total_rows !== null) {
@@ -445,24 +437,24 @@ function wlCommonInit () {
 							output.push(obj);
 						}
 					}
-					mainShowTable(output);
+					showResults(output);
 				}
 			}
 		};
-		
+
 		var findAllFailure = function(result) {
 			WL.Logger.info("Find data failed");
-			_logMessage(result.invocationResult.reason);
+			logMessage(result.invocationResult.reason);
 		};
-		
-		
+
+
 		getAllDocs(PEOPLE_COLLECTION_NAME, options.limit, findAllSuccess, findAllFailure);
-		
+
 			//Clear the input fields
 			limitField.val('');
 			offsetField.val('');
 
-		
+
 	});
 
 	//find-by-id
@@ -476,13 +468,13 @@ function wlCommonInit () {
 
 		//Check if an id was passed
 		if (id == null || id == "") {
-			return _logMessage(ID_FIELD_EMPTY_MSG);
+			return logMessage(ID_FIELD_EMPTY_MSG);
 		}
-		
+
 		var getDocSuccess = function (result) {
 			if (result.invocationResult.statusCode != 200) {
 				WL.Logger.info("Get data failed due to status code: " + result.invocationResult.statusCode);
-				_logMessage(result.invocationResult.reason);
+				logMessage(result.invocationResult.reason);
 			} else {
 				WL.Logger.info("Get data succeeded");
 				if (result !== null && result.invocationResult !== null) {
@@ -494,20 +486,20 @@ function wlCommonInit () {
 								'age': result.invocationResult.age
 							}
 					};
-					
+
 							output.push(obj);
-				
-					mainShowTable(output);
+
+					showResults(output);
 				}
 			}
 		};
-		
+
 		var getDocFailure = function(result) {
 			WL.Logger.info("Get doc failed");
-			_logMessage(result.invocationResult.reason);
+			logMessage(result.invocationResult.reason);
 		};
-		
-		
+
+
 		getDoc(PEOPLE_COLLECTION_NAME, id, getDocSuccess, getDocFailure);
 
 	});
@@ -519,27 +511,27 @@ function wlCommonInit () {
 		var countDataSuccess = function (result) {
 			if (result.invocationResult.statusCode != 200) {
 				WL.Logger.info("Count data failed due to status code: " + result.invocationResult.statusCode);
-				_logMessage(result.invocationResult.reason);
+				logMessage(result.invocationResult.reason);
 			} else {
 				WL.Logger.info("Count data succeeded");
-				_logMessage(COUNT_MSG + result.invocationResult.total_rows);
+				logMessage(COUNT_MSG + result.invocationResult.total_rows);
 			}
 		};
-		
+
 		var countDataFailure = function(result) {
 			WL.Logger.info("Count data failed");
-			_logMessage(result.invocationResult.reason);
+			logMessage(result.invocationResult.reason);
 		};
-		
-		
+
+
 
 			countAllDocs(PEOPLE_COLLECTION_NAME, countDataSuccess, countDataFailure);
 	});
-	
-	
-	
-	
 
-} (WL, WLJQ, WL_) );
+
+
+
+
+} (WL, WLJQ, WL_));
 
 }//end wlCommonInit
