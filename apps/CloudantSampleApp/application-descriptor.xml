@@ -13,7 +13,7 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
---><application xmlns="http://www.worklight.com/application-descriptor" id="CloudantSampleApp" platformVersion="7.1.0.00.20150720-0631">
+--><application xmlns="http://www.worklight.com/application-descriptor" id="CloudantSampleApp" platformVersion="7.1.0.00.20150807-0630">
     <displayName>CloudantSampleApp</displayName>
     <description>CloudantSampleApp</description>
     <author>
@@ -27,19 +27,6 @@ limitations under the License.
         <JSONStore/>
     </features>
     <thumbnailImage>common/images/thumbnail.png</thumbnailImage>
-    <iphone bundleId="com.CloudantSampleApp" version="1.0">
-        <worklightSettings include="true"/>
-        <security>
-            <encryptWebResources enabled="false"/>
-            <testWebResourcesChecksum enabled="false" ignoreFileExtensions="png, jpg, jpeg, gif, mp4, mp3"/>
-        </security>
-    </iphone>
-    <android version="1.0">
-        <worklightSettings include="true"/>
-        <security>
-            <encryptWebResources enabled="false"/>
-            <testWebResourcesChecksum enabled="false" ignoreFileExtensions="png, jpg, jpeg, gif, mp4, mp3"/>
-            <publicSigningKey>Replace this text with the actual public signing key of the certificate used to sign the APK, available by using the 'Extract public signing key' wizard.</publicSigningKey>
-        </security>
-    </android>
+    
+    
 </application>
