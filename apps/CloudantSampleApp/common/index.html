@@ -12,8 +12,31 @@
     		<script>window.$ = window.jQuery = WLJQ;</script>
     	</head>
     	<body style="display: none;">
-    		<!--application UI goes here-->
-    		Hello MobileFirst
+    		<div id="header">
+				<h1>Cloudant Adapter</h1>
+			</div>
+    		<div id="wrapper">
+				<h2>List of users</h2>
+				<table>
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Age</th>
+							<th>Edit</th>
+						</tr>
+					</thead>
+					<tbody id="list">
+						
+					</tbody>
+				</table>
+				<button id="refresh">Refresh List</button>
+				
+				<h2>Add User</h2>
+				<input type="text" id="name" placeholder="Name"/>
+				<input type="text" id="age" placeholder="Age"/>
+				<button id="add">Add User</button>
+				
+			</div>
     		<script src="js/initOptions.js"></script>
     		<script src="js/main.js"></script>
     		<script src="js/messages.js"></script>
