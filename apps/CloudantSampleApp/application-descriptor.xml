@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+		<!-- Licensed Materials - Property of IBM
+			 5725-I43 (C) Copyright IBM Corp. 2006, 2013. All Rights Reserved.
+			 US Government Users Restricted Rights - Use, duplication or
+             disclosure restricted by GSA ADP Schedule Contract with IBM Corp. -->
+
+<!-- Attribute "id" must be identical to application folder name -->
+<application id="CloudantSampleApp" platformVersion="7.1.0.00.20150807-0630"
+	xmlns="http://www.worklight.com/application-descriptor" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<displayName>CloudantSampleApp</displayName>
+	<description>CloudantSampleApp</description>
+	<author>
+		<name>application's author</name>
+		<email>application author's e-mail</email>
+		<copyright>Copyright My Company</copyright>
+		<homepage>http://mycompany.com</homepage>
+	</author>
+	<mainFile>index.html</mainFile>
+	<thumbnailImage>common/images/thumbnail.png</thumbnailImage>
+	<accessTokenExpiration>3600</accessTokenExpiration>
+	<userIdentityRealms></userIdentityRealms>
+	<features>
+	</features>
+	<!-- 
+        Define the target category for generating ADRESSABLE DEVICE license reports 
+        Possible values are 'UNDEFINED', 'B2E', 'B2C'
+     -->
+    <targetCategory>UNDEFINED</targetCategory>
+	
+</application>
