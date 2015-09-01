@@ -66,7 +66,7 @@ public class CloudantJavaResource {
 	@Path("/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteEntry(@PathParam("id") String id, User user){
-		if(id.equals(user.get_id())){
+		if(user!=null && user.get_id()!=null && user.get_rev()!=null && id.equals(user.get_id())){
 			db.remove(user);
 			return Response.ok().build();
 		}
