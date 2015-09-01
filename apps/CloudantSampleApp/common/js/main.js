@@ -1,7 +1,9 @@
 //Set the value either to "java" for a java adapter or "js" for a javascript adapter
-var cloudantInstance = new Cloudant("java");
+var cloudantType = "java";
+var cloudantInstance = new Cloudant(cloudantType);
 
 function wlCommonInit(){
+	$("#currentType").html(cloudantType);
 	getList();
 	
 }
@@ -68,4 +70,17 @@ $('#list').on('click','button.delete',function(){
 			alert("error in delete");
 		}
 	);
+});
+
+$('#switchType').on('click',function(){
+	if(cloudantType == "java"){
+		cloudantType = "js";
+	}
+	else{
+		cloudantType = "java";
+	}
+	
+	$("#currentType").html(cloudantType);
+	cloudantInstance = new Cloudant(cloudantType);
+	getList();
 });
