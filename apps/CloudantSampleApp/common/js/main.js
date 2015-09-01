@@ -1,3 +1,6 @@
+//Set the value either to "java" for a java adapter or "js" for a javascript adapter
+var cloudantInstance = new Cloudant("java");
+
 function wlCommonInit(){
 	getList();
 	
@@ -7,10 +10,9 @@ var list = [];
 
 function getList(){
 	busyIndicator.show();
-	var resourceRequest = new WLResourceRequest("/adapters/CloudantJS/getAllEntries", WLResourceRequest.GET, 30000);
-	resourceRequest.send().then(
+	cloudantInstance.getAllEntries().then(
 		function(results){
-			list = results.responseJSON.rows;
+			list = results;
 			displayList();
 		},
 		function(results){
@@ -43,9 +45,7 @@ $('#add').on('click',function(){
 	busyIndicator.show();
 	var entry = {'name': $('#name').val(), 'age': $('#age').val()};
 	
-	var resourceRequest = new WLResourceRequest("/adapters/CloudantJS/addEntry", WLResourceRequest.POST, 30000);
-	resourceRequest.setQueryParameter("params", "['" + JSON.stringify(entry) + "']");
-	resourceRequest.send().then(
+	cloudantInstance.addEntry(entry).then(
 		function(results){
 			$('#name').val('');
 			$('#age').val('');
@@ -59,9 +59,8 @@ $('#add').on('click',function(){
 
 $('#list').on('click','button.delete',function(){
 	busyIndicator.show();
-	var resourceRequest = new WLResourceRequest("/adapters/CloudantJS/deleteEntry", WLResourceRequest.POST, 30000);
-	resourceRequest.setQueryParameter("params", "['" + JSON.stringify($(this).data().document) + "']");
-	resourceRequest.send().then(
+	var entry = $(this).data().document;
+	cloudantInstance.deleteEntry(entry).then(
 		function(results){
 			getList();
 		},
