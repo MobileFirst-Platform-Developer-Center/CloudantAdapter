@@ -1,4 +1,4 @@
-//Set the value either to "java" for a java adapter or "js" for a javascript adapter
+//Set the value either to "java" for a java adapter or "javascript" for a javascript adapter
 var cloudantType = "java";
 var cloudantInstance = new Cloudant(cloudantType);
 
@@ -74,7 +74,7 @@ $('#list').on('click','button.delete',function(){
 
 $('#switchType').on('click',function(){
 	if(cloudantType == "java"){
-		cloudantType = "js";
+		cloudantType = "javascript";
 	}
 	else{
 		cloudantType = "java";

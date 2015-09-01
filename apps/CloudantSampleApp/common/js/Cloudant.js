@@ -1,5 +1,5 @@
 var Cloudant = function(type){
-	if(type == "js"){
+	if(type == "javascript"){
 		return new CloudantJS();
 	}
 	else{
