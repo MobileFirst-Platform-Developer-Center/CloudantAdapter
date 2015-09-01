@@ -15,15 +15,15 @@
 	<connectivity>
 		<connectionPolicy xsi:type="http:HTTPConnectionPolicyType">
 			<protocol>https</protocol>
-			<domain>CLOUDANT_DOMAIN</domain>
+			<domain>nasht00.cloudant.com</domain>
 			<port>443</port>	
 			<connectionTimeoutInMilliseconds>30000</connectionTimeoutInMilliseconds>
 			<socketTimeoutInMilliseconds>30000</socketTimeoutInMilliseconds>
 			<authentication>
 				<basic/>
 					<serverIdentity>
-						<username>api key</username>
-						<password>api secret</password>
+						<username>foriblosturaythengthesce</username>
+						<password>c2a8c830f3e944b28d91eb0729c786644b0badc1</password>
 					</serverIdentity>
 			</authentication>	
 			<maxConcurrentConnectionsPerNode>50</maxConcurrentConnectionsPerNode>
