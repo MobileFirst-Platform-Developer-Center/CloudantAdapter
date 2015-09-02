@@ -20,6 +20,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.lightcouch.NoDocumentException;
+
 import com.cloudant.client.api.CloudantClient;
 import com.cloudant.client.api.Database;
 import com.worklight.adapters.rest.api.WLServerAPI;
@@ -67,8 +69,14 @@ public class CloudantJavaResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteEntry(@PathParam("id") String id, User user){
 		if(user!=null && user.get_id()!=null && user.get_rev()!=null && id.equals(user.get_id())){
-			db.remove(user);
-			return Response.ok().build();
+			try{
+				db.remove(user);
+				return Response.ok().build();
+			}
+			catch(NoDocumentException e){
+				return Response.status(404).build();
+			}
+			
 		}
 		else{
 			return Response.status(404).build();
@@ -77,7 +85,7 @@ public class CloudantJavaResource {
 	
 	@GET
 	@Produces("application/json")
-	public Response getAllEntries() {
+	public Response getAllEntries(){
 		List<User> entries = db.view("_all_docs").includeDocs(true).query(User.class);
 		return Response.ok(entries).build();
 	}
