@@ -44,19 +44,24 @@ $('#refresh').on('click',function(){
 });
 
 $('#add').on('click',function(){
-	busyIndicator.show();
-	var entry = {'name': $('#name').val(), 'age': $('#age').val()};
-	
-	cloudantInstance.addEntry(entry).then(
-		function(results){
-			$('#name').val('');
-			$('#age').val('');
-			getList();
-		},
-		function(results){
-			alert("error in add");
-		}
-	);
+	if($('#name').val() && $('#age').val()){
+		busyIndicator.show();
+		var entry = {'name': $('#name').val(), 'age': $('#age').val()};
+		
+		cloudantInstance.addEntry(entry).then(
+			function(results){
+				$('#name').val('');
+				$('#age').val('');
+				getList();
+			},
+			function(results){
+				alert("error in add");
+			}
+		);
+	}
+	else{
+		alert("Please enter name and age");
+	}
 });
 
 $('#list').on('click','button.delete',function(){

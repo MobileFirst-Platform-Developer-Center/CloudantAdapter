@@ -60,8 +60,13 @@ public class CloudantJavaResource {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response addEntry(User user){
-		db.save(user);
-		return Response.ok().build();
+		if(user!=null && user.isValid()){
+			db.save(user);
+			return Response.ok().build();
+		}
+		else{
+			return Response.status(418).build();
+		}
 	}
 	
 	@DELETE
