@@ -1,32 +1,33 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!--
-Copyright 2015 IBM Corp.
+<?xml version="1.0" encoding="UTF-8"?>
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+		<!-- Licensed Materials - Property of IBM
+			 5725-I43 (C) Copyright IBM Corp. 2006, 2013. All Rights Reserved.
+			 US Government Users Restricted Rights - Use, duplication or
+             disclosure restricted by GSA ADP Schedule Contract with IBM Corp. -->
 
-http://www.apache.org/licenses/LICENSE-2.0
+<!-- Attribute "id" must be identical to application folder name -->
+<application id="CloudantSampleApp" platformVersion="7.1.0.00.20150807-0630"
+	xmlns="http://www.worklight.com/application-descriptor" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
---><application xmlns="http://www.worklight.com/application-descriptor" id="CloudantSampleApp" platformVersion="7.1.0.00.20150807-0630">
-    <displayName>CloudantSampleApp</displayName>
-    <description>CloudantSampleApp</description>
-    <author>
-        <name>application's author</name>
-        <email>application author's e-mail</email>
-        <homepage>http://mycompany.com</homepage>
-        <copyright>Copyright My Company</copyright>
-    </author>
-    <mainFile>index.html</mainFile>
-    <features>
-        <JSONStore/>
-    </features>
-    <thumbnailImage>common/images/thumbnail.png</thumbnailImage>
-    
-    
+	<displayName>CloudantSampleApp</displayName>
+	<description>CloudantSampleApp</description>
+	<author>
+		<name>application's author</name>
+		<email>application author's e-mail</email>
+		<copyright>Copyright My Company</copyright>
+		<homepage>http://mycompany.com</homepage>
+	</author>
+	<mainFile>index.html</mainFile>
+	<thumbnailImage>common/images/thumbnail.png</thumbnailImage>
+	<accessTokenExpiration>3600</accessTokenExpiration>
+	<userIdentityRealms></userIdentityRealms>
+	<features>
+	</features>
+	<!-- 
+        Define the target category for generating ADRESSABLE DEVICE license reports 
+        Possible values are 'UNDEFINED', 'B2E', 'B2C'
+     -->
+    <targetCategory>UNDEFINED</targetCategory>
+	
 </application>

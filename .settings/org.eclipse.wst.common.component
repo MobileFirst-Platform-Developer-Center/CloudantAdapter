@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="CloudantAdapterSample">
-        <wb-resource deploy-path="/" source-path="/server/java"/>
-        <wb-resource deploy-path="/" source-path="/apps/CloudantSampleApp/android"/>
-        <wb-resource deploy-path="/" source-path="/apps/CloudantSampleApp/iphone"/>
+    <wb-module deploy-name="CloudantAdapter">
         <wb-resource deploy-path="/" source-path="/apps/CloudantSampleApp/common"/>
-        <property name="context-root" value="CloudantAdapterSample"/>
+        <wb-resource deploy-path="/" source-path="/adapters/CloudantJava/src"/>
+        <property name="context-root" value="CloudantAdapter"/>
     </wb-module>
 </project-modules>

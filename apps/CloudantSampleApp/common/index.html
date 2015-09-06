@@ -1,73 +1,50 @@
-<!--
-Copyright 2015 IBM Corp.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
--->
-<!-- NON-PII -->
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
-		<title>Cloudant Sample</title>
-		<link rel="shortcut icon" href="images/favicon.png" />
-		<link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
-		<link rel="stylesheet" href="css/main.css" />
-
-		<script>window.$ = window.jQuery = WLJQ;</script>
-
-	</head>
-	<!-- <body id="content" style="display: none"> -->
-		<body id="content">
-		<div id="header">Cloudant Adapter Sample</div>
-
-		<div id="container">
-			<button id='init' class='button-line-1'>Create Database</button>
-
-			<button id='destroy' class='button-line-1'>Destroy Database</button>
-			<hr>
-
-			<input id='add-name' class='input-line-2' type='text' placeholder='Enter Name'/>
-			<input id='add-age' class='input-line-2' type='text' placeholder='Enter Age'/>
-
-			<button id='add-data' class='button-line-1'>Add Data</button>
-
-			<hr>
-
-			<input id='find-search' class='input-line-1' type='text' placeholder='Search Field'/>
-			<input id='find-limit' class='input-line-1' type='text' placeholder='Limit (optional)'/>
-
-
-			<button id='find-name' class='button-line-1'>Find By Name (Fuzzy Search)</button>
-			<button id='find-age' class='button-line-1'>Find By Age (Exact Search)</button>
-
-			<button id='find-all' class='button-line-1'>Find All</button>
-
-			<input id='find-id' class='input-line-2' type='text' placeholder='Enter Id'/>
-
-			<button id='find-id-btn' class='button-line-2'>Find (by id)</button>
-
-			<hr>
-
-			<button id='count' class='button-line-1'>Count All</button>
-		</div>
-		<div id="consoleContainer">
-			<div id="console"></div>
-		</div>
-
-		<script src="js/initOptions.js"></script>
-		<script src="js/main.js"></script>
-		<script src="js/messages.js"></script>
-		<script src="js/cloudant.js"></script>
-	</body>
+    	<head>
+    		<meta charset="UTF-8">
+    		<title>CloudantSampleApp</title>
+    		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    		<!--
+    			<link rel="shortcut icon" href="images/favicon.png">
+    			<link rel="apple-touch-icon" href="images/apple-touch-icon.png"> 
+    		-->
+    		<link rel="stylesheet" href="css/main.css">
+    		<script>window.$ = window.jQuery = WLJQ;</script>
+    	</head>
+    	<body style="display: none;">
+    		<div id="header">
+				<h1>Cloudant Adapter</h1>
+			</div>
+    		<div id="wrapper">
+				<h2>List of users</h2>
+				<table>
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Age</th>
+							<th>Edit</th>
+						</tr>
+					</thead>
+					<tbody id="list">
+						
+					</tbody>
+				</table>
+				<button id="refresh">Refresh List</button>
+				
+				<h2>Add User</h2>
+				<input type="text" id="name" placeholder="Name" required/>
+				<input type="text" id="age" placeholder="Age" required/>
+				<button id="add">Add User</button>
+				<h2>Adapter type</h2>
+				<p>Currently using <span id="currentType"></span></p>
+				<button id="switchType">Switch Adapter type</button>
+				
+			</div>
+    		<script src="js/initOptions.js"></script>
+    		<script src="js/CloudantJS.js"></script>
+    		<script src="js/CloudantJava.js"></script>
+    		<script src="js/Cloudant.js"></script>
+    		<script src="js/main.js"></script>
+    		<script src="js/messages.js"></script>
+    	</body>
 </html>
