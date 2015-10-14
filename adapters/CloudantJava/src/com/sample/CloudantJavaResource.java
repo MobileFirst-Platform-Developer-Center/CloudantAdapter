@@ -1,8 +1,17 @@
-/*
- *    Licensed Materials - Property of IBM
- *    5725-I43 (C) Copyright IBM Corp. 2015. All Rights Reserved.
- *    US Government Users Restricted Rights - Use, duplication or
- *    disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+/**
+* Copyright 2015 IBM Corp.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
 */
 
 package com.sample;
@@ -33,7 +42,7 @@ public class CloudantJavaResource {
 	/*
 	 * For more info on JAX-RS see https://jsr311.java.net/nonav/releases/1.1/index.html
 	 */
-		
+
 	//Define logger (Standard java.util.Logger)
 	static Logger logger = Logger.getLogger(CloudantJavaResource.class.getName());
 
@@ -44,7 +53,7 @@ public class CloudantJavaResource {
 
 	private static CloudantClient cloudant;
 	private static Database db;
-	
+
 	public static void init() {
 		String cloudantDomain = WorklightConfiguration.getInstance().getStringProperty("cloudant.domain");
 		String cloudantKey = WorklightConfiguration.getInstance().getStringProperty("cloudant.key");
@@ -56,7 +65,7 @@ public class CloudantJavaResource {
 		cloudant = new CloudantClient(cloudantDomain,cloudantKey,cloudantPassword);
 		db = cloudant.database(CLOUDANT_DB, false);
 	}
-	
+
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response addEntry(User user){
@@ -68,7 +77,7 @@ public class CloudantJavaResource {
 			return Response.status(418).build();
 		}
 	}
-	
+
 	@DELETE
 	@Path("/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -81,13 +90,13 @@ public class CloudantJavaResource {
 			catch(NoDocumentException e){
 				return Response.status(404).build();
 			}
-			
+
 		}
 		else{
 			return Response.status(404).build();
 		}
 	}
-	
+
 	@GET
 	@Produces("application/json")
 	public Response getAllEntries(){

@@ -1,3 +1,18 @@
+/**
+* Copyright 2015 IBM Corp.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 //Set the value either to "java" for a java adapter or "javascript" for a javascript adapter
 var cloudantType = "java";
 var cloudantInstance = new Cloudant(cloudantType);
@@ -5,7 +20,7 @@ var cloudantInstance = new Cloudant(cloudantType);
 function wlCommonInit(){
 	$("#currentType").html(cloudantType);
 	getList();
-	
+
 }
 var busyIndicator = new WL.BusyIndicator( null, {text : 'Loading...'});
 var list = [];
@@ -29,11 +44,11 @@ function displayList(){
 		var row = $('<tr>');
 		row.append($('<td>').text(value.name));
 		row.append($('<td>').text(value.age));
-		
+
 		var del = $('<button>').addClass('delete').text('Delete');
 		del.data('document',value);
 		row.append($('<td>').append(del));
-		
+
 		$('#list').append(row);
 	});
 	busyIndicator.hide();
@@ -47,7 +62,7 @@ $('#add').on('click',function(){
 	if($('#name').val() && $('#age').val()){
 		busyIndicator.show();
 		var entry = {'name': $('#name').val(), 'age': $('#age').val()};
-		
+
 		cloudantInstance.addEntry(entry).then(
 			function(results){
 				$('#name').val('');
@@ -84,7 +99,7 @@ $('#switchType').on('click',function(){
 	else{
 		cloudantType = "java";
 	}
-	
+
 	$("#currentType").html(cloudantType);
 	cloudantInstance = new Cloudant(cloudantType);
 	getList();
