@@ -43,7 +43,7 @@ function wlCommonInit(){
 
 // ========
     $('#list').on('click','button.delete',function(){
-        SpinnerDialog.show(null, [message]);
+        SpinnerDialog.show(null, message);
         var entry = $(this).data().document;
         cloudantInstance.deleteEntry(entry).then(
             function(results){
@@ -61,7 +61,7 @@ function wlCommonInit(){
 
     $('#add').on('click',function(){
     	if($('#name').val() && $('#age').val()){
-    		SpinnerDialog.show(null, [message]);
+    		SpinnerDialog.show(null, message);
     		var entry = {'name': $('#name').val(), 'age': $('#age').val()};
 
     		cloudantInstance.addEntry(entry).then(
@@ -90,14 +90,14 @@ function wlCommonInit(){
 
     	$("#currentType").html(cloudantType);
     	cloudantInstance = new Cloudant(cloudantType);
-    	//getList();
+    	getList();
     });
 
 
 //===========
 
     $("#currentType").html(cloudantType);
-    //getList();
+    getList();
 }
 
 var app = {
@@ -129,7 +129,7 @@ app.initialize();
 
 
 function getList(){
-	SpinnerDialog.show(null, [message])
+	SpinnerDialog.show(null, message)
 	cloudantInstance.getAllEntries().then(
 		function(results){
 			list = results;

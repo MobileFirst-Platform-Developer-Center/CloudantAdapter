@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.sample" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:mfp="http://www.ibm.com/mobilefirst/cordova-plugin-mfp">
-    <name>HelloCordova</name>
+    <name>CloudantAdapterApp</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>
@@ -70,7 +70,7 @@
         <splash height="1242" src="res/screen/ios/Default-736h-Landscape~iphone.png" width="2208" />
     </platform>
     <mfp:android>
-        <mfp:sdkChecksum>3792344277</mfp:sdkChecksum>
+        <mfp:sdkChecksum>823262508</mfp:sdkChecksum>
         <mfp:appChecksum>0</mfp:appChecksum>
         <mfp:security>
             <mfp:testWebResourcesChecksum enabled="false" ignoreFileExtensions="png, jpg, jpeg, gif, mp4, mp3" />
@@ -108,9 +108,9 @@
         </mfp:windows10>
         <mfp:appChecksum>0</mfp:appChecksum>
     </mfp:windows>
-    <mfp:platformVersion>8.0.0.00-20160121-0855</mfp:platformVersion>
+    <mfp:platformVersion>8.0.0.00-20160204-1211</mfp:platformVersion>
     <mfp:clientCustomInit enabled="false" />
-    <mfp:server runtime="mfp" url="http://9.148.225.99:9080" />
+    <mfp:server runtime="mfp" url="http://9.148.225.88:9080" />
     <mfp:directUpdateAuthenticityPublicKey />
     <mfp:languagePreferences>en</mfp:languagePreferences>
     <plugin name="cordova-plugin-mfp" spec="~8.0" />

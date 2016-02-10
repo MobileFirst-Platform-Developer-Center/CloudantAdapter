@@ -30,12 +30,13 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.cloudant.client.api.ClientBuilder;
+//import com.cloudant.client.api.ClientBuilder;
+//import com.cloudant.client.org.lightcouch.NoDocumentException;
+
+import org.lightcouch.NoDocumentException;
 import com.cloudant.client.api.CloudantClient;
 import com.cloudant.client.api.Database;
-import com.cloudant.client.org.lightcouch.NoDocumentException;
 import com.ibm.mfp.adapter.api.ConfigurationAPI;
-import com.ibm.mfp.adapter.api.OAuthSecurity;
 
 
 @Path("/")
@@ -62,11 +63,11 @@ public class CloudantJavaResource {
 
 	public Database getDB() {
 		if (updatedProperties() || db == null) {
-			//cloudant = new CloudantClient(cloudantDomain,cloudantKey,cloudantPassword);
-			CloudantClient cloudant = ClientBuilder.account(cloudantAccount)
-					.username(cloudantKey)
-					.password(cloudantPassword)
-					.build();
+			CloudantClient cloudant = new CloudantClient(cloudantAccount,cloudantKey,cloudantPassword);
+//			CloudantClient cloudant = ClientBuilder.account(cloudantAccount)
+//					.username(cloudantKey)
+//					.password(cloudantPassword)
+//					.build();
 			db = cloudant.database(CLOUDANT_DB, false);
 		}
 		return db;
@@ -125,8 +126,8 @@ public class CloudantJavaResource {
 	@GET
 	@Produces("application/json")
 	public Response getAllEntries() throws IOException {
-		//List<User> entries = db.view("_all_docs").includeDocs(true).query(User.class);
-		List<User> entries = getDB().getAllDocsRequestBuilder().includeDocs(true).build().getResponse().getDocsAs(User.class);
+		List<User> entries = getDB().view("_all_docs").includeDocs(true).query(User.class);
+		//List<User> entries = getDB().getAllDocsRequestBuilder().includeDocs(true).build().getResponse().getDocsAs(User.class);
 		return Response.ok(entries).build();
 	}
 }
