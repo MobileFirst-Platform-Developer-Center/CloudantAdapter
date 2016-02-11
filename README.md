@@ -1,6 +1,7 @@
 IBM MobileFirst Platform Foundation
 ===
 ## CloudantAdapter
+An application demonstrating how to use a Java adapter in order to connect to a Cloudant database and perform various actions on user data.
 
 ### Tutorials
 https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/adapters/cloudant/
