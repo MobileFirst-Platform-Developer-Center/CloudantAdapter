@@ -75,7 +75,6 @@
         <mfp:security>
             <mfp:testWebResourcesChecksum enabled="false" ignoreFileExtensions="png, jpg, jpeg, gif, mp4, mp3" />
         </mfp:security>
-        <mfp:publicSigningKey />
     </mfp:android>
     <mfp:ios>
         <mfp:sdkChecksum>0</mfp:sdkChecksum>
@@ -90,27 +89,24 @@
             <mfp:security>
                 <mfp:testWebResourcesChecksum enabled="false" ignoreFileExtensions="png, jpg, jpeg, gif, mp4, mp3" />
             </mfp:security>
-            <mfp:packageFamilyName />
         </mfp:windows8>
         <mfp:windowsphone8>
             <mfp:sdkChecksum>0</mfp:sdkChecksum>
             <mfp:security>
                 <mfp:testWebResourcesChecksum enabled="false" ignoreFileExtensions="png, jpg, jpeg, gif, mp4, mp3" />
             </mfp:security>
-            <mfp:packageFamilyName />
         </mfp:windowsphone8>
         <mfp:windows10>
             <mfp:sdkChecksum>0</mfp:sdkChecksum>
             <mfp:security>
                 <mfp:testWebResourcesChecksum enabled="false" ignoreFileExtensions="png, jpg, jpeg, gif, mp4, mp3" />
             </mfp:security>
-            <mfp:packageFamilyName />
         </mfp:windows10>
         <mfp:appChecksum>0</mfp:appChecksum>
     </mfp:windows>
     <mfp:platformVersion>8.0.0.00-20160204-1211</mfp:platformVersion>
     <mfp:clientCustomInit enabled="false" />
-    <mfp:server runtime="mfp" url="http://9.148.225.88:9080" />
+    <mfp:server runtime="mfp" url="http://localhost:9080" />
     <mfp:directUpdateAuthenticityPublicKey />
     <mfp:languagePreferences>en</mfp:languagePreferences>
     <plugin name="cordova-plugin-mfp" spec="~8.0" />
