@@ -1,6 +1,6 @@
 IBM MobileFirst Platform Foundation
 ===
-### CloudantAdapter
+## CloudantAdapter
 
 ### Tutorials
 https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/adapters/cloudant/
