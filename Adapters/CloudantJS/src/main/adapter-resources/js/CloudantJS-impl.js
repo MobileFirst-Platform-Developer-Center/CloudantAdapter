@@ -14,7 +14,7 @@
 * limitations under the License.
 */
 
-var DATABASE_NAME = 'adapter';
+var DATABASE_NAME = 'DATABASE_NAME';
 
 function addEntry(entry){
 

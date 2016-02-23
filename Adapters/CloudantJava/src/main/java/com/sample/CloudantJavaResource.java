@@ -15,9 +15,7 @@
 */
 package com.sample;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.logging.Logger;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -30,13 +28,11 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-//import com.cloudant.client.api.ClientBuilder;
-//import com.cloudant.client.org.lightcouch.NoDocumentException;
-
+import com.ibm.mfp.adapter.api.AdaptersAPI;
 import org.lightcouch.NoDocumentException;
-import com.cloudant.client.api.CloudantClient;
+
 import com.cloudant.client.api.Database;
-import com.ibm.mfp.adapter.api.ConfigurationAPI;
+
 
 
 @Path("/")
@@ -45,56 +41,21 @@ public class CloudantJavaResource {
 	 * For more info on JAX-RS see https://jax-rs-spec.java.net/nonav/2.0-rev-a/apidocs/index.html
 	 */
 
-	//Define logger (Standard java.util.Logger)
-	static Logger logger = Logger.getLogger(CloudantJavaResource.class.getName());
-
-	protected static final String CLOUDANT_DB = "adapter";
-
-	private static Database db;
-	private static String cloudantAccount = "";
-	private static String cloudantKey = "";
-	private static String cloudantPassword = "";
-
-
 	@Context
-	ConfigurationAPI configurationAPI;
+	AdaptersAPI adaptersAPI;
 
-
-
-	public Database getDB() {
-		if (updatedProperties() || db == null) {
-			CloudantClient cloudant = new CloudantClient(cloudantAccount,cloudantKey,cloudantPassword);
-//			CloudantClient cloudant = ClientBuilder.account(cloudantAccount)
-//					.username(cloudantKey)
-//					.password(cloudantPassword)
-//					.build();
-			db = cloudant.database(CLOUDANT_DB, false);
+	private Database getDB() throws Exception {
+		CloudantJavaApplication app = adaptersAPI.getJaxRsApplication(CloudantJavaApplication.class);
+		if (app.db != null) {
+			return app.db;
 		}
-		return db;
-	}
-
-	private boolean updatedProperties() {
-		String cloudantAccountOld = cloudantAccount;
-		String cloudantKeyOld = cloudantKey;
-		String cloudantPasswordOld  = cloudantPassword;
-
-		cloudantAccount = configurationAPI.getPropertyValue("account");
-		cloudantKey = configurationAPI.getPropertyValue("key");
-		cloudantPassword = configurationAPI.getPropertyValue("password");
-
-		logger.info("cloudantDomain" + cloudantAccount);
-		logger.info("cloudantKey" + cloudantKey);
-		logger.info("cloudantPassword" + cloudantPassword);
-
-		return !cloudantAccountOld.equals(cloudantAccount) ||
-				!cloudantKeyOld.equals(cloudantKey) ||
-				!cloudantPasswordOld.equals(cloudantPassword);
+		throw new Exception("Unable to connect to Cloudant DB, check the configuration.");
 	}
 
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response addEntry(User user){
+	public Response addEntry(User user) throws Exception {
 		if(user!=null && user.isValid()){
 			getDB().save(user);
 			return Response.ok().build();
@@ -106,28 +67,21 @@ public class CloudantJavaResource {
 
 	@DELETE
 	@Path("/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteEntry(@PathParam("id") String id, User user){
-		if(user!=null && user.get_id()!=null && user.get_rev()!=null && id.equals(user.get_id())){
-			try{
-				getDB().remove(user);
-				return Response.ok().build();
-			}
-			catch(NoDocumentException e){
-				return Response.status(404).build();
-			}
-
+	public Response deleteEntry(@PathParam("id") String id) throws Exception {
+		try{
+			User user = getDB().find(User.class, id);
+			getDB().remove(user);
+			return Response.ok().build();
 		}
-		else{
+		catch(NoDocumentException e){
 			return Response.status(404).build();
 		}
 	}
 
 	@GET
 	@Produces("application/json")
-	public Response getAllEntries() throws IOException {
+	public Response getAllEntries() throws Exception {
 		List<User> entries = getDB().view("_all_docs").includeDocs(true).query(User.class);
-		//List<User> entries = getDB().getAllDocsRequestBuilder().includeDocs(true).build().getResponse().getDocsAs(User.class);
 		return Response.ok(entries).build();
 	}
 }

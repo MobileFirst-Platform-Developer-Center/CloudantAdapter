@@ -16,16 +16,37 @@
 
 package com.sample;
 
+import com.cloudant.client.api.CloudantClient;
+import com.cloudant.client.api.Database;
+import com.ibm.mfp.adapter.api.ConfigurationAPI;
 import com.ibm.mfp.adapter.api.MFPJAXRSApplication;
+import org.lightcouch.CouchDbException;
 
+import javax.ws.rs.core.Context;
 import java.util.logging.Logger;
 
 public class CloudantJavaApplication extends MFPJAXRSApplication{
 
 	static Logger logger = Logger.getLogger(CloudantJavaApplication.class.getName());
 
+	@Context
+	ConfigurationAPI configurationAPI;
+
+	public Database db = null;
+
 	protected void init() throws Exception {
 		logger.info("Adapter initialized!");
+		String cloudantDBName = configurationAPI.getPropertyValue("DBName");
+		String cloudantAccount = configurationAPI.getPropertyValue("account");
+		String cloudantKey = configurationAPI.getPropertyValue("key");
+		String cloudantPassword = configurationAPI.getPropertyValue("password");
+
+		try {
+			CloudantClient cloudantClient = new CloudantClient(cloudantAccount,cloudantKey,cloudantPassword);
+			db = cloudantClient.database(cloudantDBName, false);
+		} catch (CouchDbException e){
+			db = null;
+		}
 	}
 
 

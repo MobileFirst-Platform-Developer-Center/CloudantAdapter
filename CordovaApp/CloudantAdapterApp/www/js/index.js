@@ -25,11 +25,6 @@ var wlInitOptions = {
     // For initialization options please refer to IBM MobileFirst Platform Foundation Knowledge Center.
 };
 
-
-
-
-
-
 //Set the value either to "java" for a java adapter or "javascript" for a javascript adapter
 var cloudantType = "java";
 var cloudantInstance = new Cloudant(cloudantType);
@@ -43,7 +38,6 @@ function wlCommonInit(){
 
 // ========
     $('#list').on('click','button.delete',function(){
-        SpinnerDialog.show(null, message);
         var entry = $(this).data().document;
         cloudantInstance.deleteEntry(entry).then(
             function(results){
@@ -61,7 +55,6 @@ function wlCommonInit(){
 
     $('#add').on('click',function(){
     	if($('#name').val() && $('#age').val()){
-    		SpinnerDialog.show(null, message);
     		var entry = {'name': $('#name').val(), 'age': $('#age').val()};
 
     		cloudantInstance.addEntry(entry).then(
@@ -100,43 +93,16 @@ function wlCommonInit(){
     getList();
 }
 
-var app = {
-    // Application Constructor
-    initialize: function() {
-        this.bindEvents();
-    },
-
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-    },
-
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, 'app.receivedEvent(...);' must be explicitly called.
-    onDeviceReady: function() {
-        app.receivedEvent('deviceready');
-    },
-
-    // Update the DOM on a received event.
-    receivedEvent: function(id) {
-
-        console.log('Received Event: ' + id);
-    }
-};
-
-app.initialize();
-
-
 function getList(){
-	SpinnerDialog.show(null, message)
+	window.plugins.spinnerDialog.show();
 	cloudantInstance.getAllEntries().then(
 		function(results){
 			list = results;
 			displayList();
 		},
 		function(results){
-			alert("error in getList");
+			alert("error in getList" + JSON.stringify(results));
+            window.plugins.spinnerDialog.hide();
 		}
 	);
 }
@@ -154,5 +120,5 @@ function displayList(){
 
 		$('#list').append(row);
 	});
-	SpinnerDialog.hide();
+	window.plugins.spinnerDialog.hide();
 }

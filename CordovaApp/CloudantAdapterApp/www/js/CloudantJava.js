@@ -32,6 +32,5 @@ CloudantJava.prototype.addEntry = function(entry){
 
 CloudantJava.prototype.deleteEntry = function(entry){
 	var resourceRequest = new WLResourceRequest("/adapters/CloudantJava/"+entry._id, WLResourceRequest.DELETE, 30000);
-	resourceRequest.setHeader("Content-Type","application/json");
 	return resourceRequest.send(entry);
 };
