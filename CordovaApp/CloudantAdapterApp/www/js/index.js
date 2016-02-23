@@ -44,6 +44,7 @@ function wlCommonInit(){
                 getList();
             },
             function(results){
+                WL.Logger.debug("deleteEntry onFailure: " + JSON.stringify(results));
                 alert("error in delete");
             }
         );
@@ -64,6 +65,7 @@ function wlCommonInit(){
     				getList();
     			},
     			function(results){
+                    WL.Logger.debug("addEntry onFailure: " + JSON.stringify(results));
     				alert("error in add");
     			}
     		);
@@ -101,6 +103,7 @@ function getList(){
 			displayList();
 		},
 		function(results){
+            WL.Logger.debug("getAllEntries onFailure: " + JSON.stringify(results));
 			alert("error in getList" + JSON.stringify(results));
             window.plugins.spinnerDialog.hide();
 		}
