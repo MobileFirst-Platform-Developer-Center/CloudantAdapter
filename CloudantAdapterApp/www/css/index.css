@@ -66,3 +66,7 @@ input[type=text] {
 	margin: 0 auto 0 auto;
 	padding-left: 5px;
 }
+
+#name {
+    margin-bottom: 5px; 
+}
