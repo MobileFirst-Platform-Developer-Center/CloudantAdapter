@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
 <!--
 Copyright 2016 IBM Corp.
 
@@ -13,14 +14,13 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -->
-<?xml version='1.0' encoding='utf-8'?>
 <widget id="com.sample.cloudantadapterapp" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:mfp="http://www.ibm.com/mobilefirst/cordova-plugin-mfp">
     <name>CloudantAdapterApp</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        A sample Apache Cordova application demonstrating how to use Java and JavaScript adapters to connect to a Cloudant database.
     </description>
-    <author email="mobileb@us.ibm.com" href="https://developer.ibm.com/mobilefirstplatform/documentation/getting-started">
-        IBM MobileFirst Team
+    <author email="" href="https://mobilefirstplatform.ibmcloud.com">
+        MobileFirst Platform Foundation team
     </author>
     <content src="index.html" />
     <access origin="*" />
