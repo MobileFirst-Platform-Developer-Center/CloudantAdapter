@@ -24,9 +24,9 @@ limitations under the License.
 
 	<JAXRSApplicationClass>com.sample.CloudantJavaApplication</JAXRSApplicationClass>
 
-	<property name="account" displayName="Cloudant account" defaultValue="CLOUDANT_ACCOUNT"  />
-	<property name="key" displayName="Cloudant key" defaultValue="CLOUDANT_KEY"  />
-	<property name="password" displayName="Cloudant password" defaultValue="CLOUDANT_PASSWORD"  />
-	<property name="DBName" displayName="Cloudant DB name" defaultValue="DATABASE_NAME"/>
+	<property name="account" displayName="Cloudant account" defaultValue=""  />
+	<property name="key" displayName="Cloudant key" defaultValue=""  />
+	<property name="password" displayName="Cloudant password" defaultValue=""  />
+	<property name="DBName" displayName="Cloudant DB name" defaultValue=""/>
 
 </mfp:adapter>
