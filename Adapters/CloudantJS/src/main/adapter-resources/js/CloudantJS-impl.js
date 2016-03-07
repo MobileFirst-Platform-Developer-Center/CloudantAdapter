@@ -28,7 +28,7 @@ function addEntry(entry){
 	        }
 		};
 
-	var response = WL.Server.invokeHttp(input);
+	var response = MFP.Server.invokeHttp(input);
 	if(!response.id){
 		response.isSuccessful = false;
 	}
@@ -44,7 +44,7 @@ function deleteEntry(entry){
 		    path : DATABASE_NAME + '/' + entry._id + '?rev=' + entry._rev
 		};
 
-	var response = WL.Server.invokeHttp(input);
+	var response = MFP.Server.invokeHttp(input);
 
 	if(!response.id){
 		response.isSuccessful = false;
@@ -61,7 +61,7 @@ function getAllEntries(){
 		    path : path,
 		};
 
-	var response = WL.Server.invokeHttp(input);
+	var response = MFP.Server.invokeHttp(input);
 
 	if(!response.rows){
 		response.isSuccessful = false;
