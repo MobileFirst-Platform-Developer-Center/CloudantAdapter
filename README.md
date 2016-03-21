@@ -24,8 +24,8 @@ https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/adapters/cl
 
 #### Application setup
 1. From a **Command-line**, navigate to the **CloudantAdapterApp** project's root folder.
-2. Register the application by running the command: `mfpdev app register`.
-3. Add a platform using the `cordova platform add` command.
+2. Add a platform using the `cordova platform add` command.
+3. Register the application by running the command: `mfpdev app register`.
 4. Run the application by running the `cordova run` command.
 
 **NEED TO ADD MISSING INSTRUCTIONS**
