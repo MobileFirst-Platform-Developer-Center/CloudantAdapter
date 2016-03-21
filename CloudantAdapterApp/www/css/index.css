@@ -57,7 +57,7 @@ button {
 }
 
 
-input[type=text] {
+input {
 	margin: 0.2em 0 0.2em 0;
 	width: 97%;
 	height: 6%;
