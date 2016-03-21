@@ -20,7 +20,7 @@ https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/adapters/cl
       - Use either Maven or MobileFirst Developer CLI to [build and deploy the CloudantJava adapter](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/adapters/creating-adapters/).
       - In the **MobileFirst Operations Console → [your adapter] → Configurations tab**, replace the `DATABASE_NAME`, `CLOUDANT_ACCOUNT`, `KEY` and `PASSWORD` placeholders with the actual values.
 
-  > To learn more about the adapter's configurations properties see the [Java Adapters](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/adapters/java-adapters) tutorial.
+      > To learn more about the adapter's configurations properties see the [Java Adapters](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/adapters/java-adapters) tutorial.
 
 #### Application setup
 1. From a **Command-line**, navigate to the **CloudantAdapterApp** project's root folder.
