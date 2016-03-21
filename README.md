@@ -14,10 +14,10 @@ https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/adapters/cl
  * CloudantJS:
   1. Open the adapter XML file and replace the `CLOUDANT_ACCOUNT`, `KEY` and `PASSWORD` placeholders with the actual values.
   2. Open the **CloudantJS-impl.js** file and replace the `DATABASE_NAME` placeholder with your database name.
-  3. Use either Maven or MobileFirst Developer CLI to [build and deploy the JavaSQL adapter](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/adapters/creating-adapters/).
+  3. Use either Maven or MobileFirst Developer CLI to [build and deploy the CloudantJS adapter](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/adapters/creating-adapters/).
 
  * CloudantJava:
-  1. Use either Maven or MobileFirst Developer CLI to [build and deploy the JavaSQL adapter](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/adapters/creating-adapters/).
+  1. Use either Maven or MobileFirst Developer CLI to [build and deploy the CloudantJava adapter](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/adapters/creating-adapters/).
   2. In the **MobileFirst Operations Console → [your adapter] → Configurations tab**, replace the `DATABASE_NAME`, `CLOUDANT_ACCOUNT`, `KEY` and `PASSWORD` placeholders with the actual values.
 
   > To learn more about the adapter's configurations properties see the [Java Adapters](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/adapters/java-adapters) tutorial.
