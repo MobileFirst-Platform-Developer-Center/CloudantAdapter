@@ -45,7 +45,7 @@ function wlCommonInit(){
             },
             function(results){
                 WL.Logger.debug("deleteEntry onFailure: " + JSON.stringify(results));
-                alert("error in delete");
+                navigator.notification.alert("error in delete");
             }
         );
     });
@@ -66,12 +66,12 @@ function wlCommonInit(){
     			},
     			function(results){
                     WL.Logger.debug("addEntry onFailure: " + JSON.stringify(results));
-    				alert("error in add");
+    				navigator.notification.alert("error in add");
     			}
     		);
     	}
     	else{
-    		alert("Please enter name and age");
+    		navigator.notification.alert("Please enter name and age");
     	}
     });
 
