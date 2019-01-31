@@ -20,12 +20,12 @@ limitations under the License.
 	xmlns:http="http://www.ibm.com/mfp/integration/http">
 
 	<displayName>CloudantJava</displayName>
-	<description>CloudantJava</description>
+	<description>Simple adapter that allows operations on a user object</description>
 
 	<JAXRSApplicationClass>com.sample.CloudantJavaApplication</JAXRSApplicationClass>
 
-	<property name="account" displayName="Cloudant account" defaultValue=""  />
-	<property name="key" displayName="Cloudant key" defaultValue=""  />
+	<property name="account" displayName="Cloudant URL" defaultValue=""  />
+	<property name="key" displayName="Cloudant Username" defaultValue=""  />
 	<property name="password" displayName="Cloudant password" defaultValue=""  />
 	<property name="DBName" displayName="Cloudant DB name" defaultValue=""/>
 

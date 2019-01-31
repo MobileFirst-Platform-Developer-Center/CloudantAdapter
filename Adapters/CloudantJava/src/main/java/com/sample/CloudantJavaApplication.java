@@ -23,6 +23,8 @@ import com.ibm.mfp.adapter.api.MFPJAXRSApplication;
 import org.lightcouch.CouchDbException;
 
 import javax.ws.rs.core.Context;
+
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class CloudantJavaApplication extends MFPJAXRSApplication{
@@ -35,7 +37,10 @@ public class CloudantJavaApplication extends MFPJAXRSApplication{
 	public Database db = null;
 
 	protected void init() throws Exception {
-		logger.info("Adapter initialized!");
+		logger.warning(this.getClass()+ " adapter initialized!");
+	}
+
+	public void initConnection() {
 		String cloudantDBName = configurationAPI.getPropertyValue("DBName");
 		String cloudantAccount = configurationAPI.getPropertyValue("account");
 		String cloudantKey = configurationAPI.getPropertyValue("key");
@@ -45,20 +50,22 @@ public class CloudantJavaApplication extends MFPJAXRSApplication{
 			try {
 				CloudantClient cloudantClient = new CloudantClient(cloudantAccount,cloudantKey,cloudantPassword);
 				db = cloudantClient.database(cloudantDBName, false);
-			} catch (CouchDbException e){
-				throw new Exception("Unable to connect to Cloudant DB, check the configuration.");
+			} catch (CouchDbException e) {
+				System.out.println(e.getMessage());
+				
 			}
 		}
 	}
-
 
 	protected void destroy() throws Exception {
 		logger.info("Adapter destroyed!");
 	}
 
 	protected String getPackageToScan() {
-		//The package of this class will be scanned (recursively) to find JAX-RS resources.
-		//It is also possible to override "getPackagesToScan" method in order to return more than one package for scanning
+		// The package of this class will be scanned (recursively) to find JAX-RS
+		// resources.
+		// It is also possible to override "getPackagesToScan" method in order to return
+		// more than one package for scanning
 		return getClass().getPackage().getName();
 	}
 }
