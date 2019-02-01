@@ -16,36 +16,89 @@
 
 package com.sample;
 
-public class User {
-	private String name, _id, _rev;
-	private Integer age;
+import io.swagger.annotations.ApiModelProperty;
 
-	public String getName() {
-		return name;
+public class User {
+	private String firstName, lastName, company, city, email, notes, _id;
+
+	@ApiModelProperty(hidden=true)
+	private String _rev;
+	
+	private Integer age;
+	private Boolean contacted = false;
+
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String name) {
+		this.firstName = name;
 	}
-	public String get_id() {
-		return _id;
+	public String getLastName() {
+		return lastName;
 	}
-	public void set_id(String _id) {
-		this._id = _id;
+	public void setLastName(String name) {
+		this.lastName = name;
 	}
-	public String get_rev() {
-		return _rev;
+	
+	public String getCompany() {
+		return company;
 	}
-	public void set_rev(String _rev) {
-		this._rev = _rev;
+	public void setCompany(String name) {
+		this.company = name;
 	}
+
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String name) {
+		this.city = name;
+	}
+
 	public Integer getAge() {
 		return age;
 	}
 	public void setAge(Integer age) {
 		this.age = age;
 	}
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-	public boolean isValid(){
+	public String getNotes() {
+		return notes;
+	}
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+
+	public Boolean getContacted() {
+		return contacted;
+	}
+	public void setContacted(Boolean contacted) {
+		this.contacted = contacted;
+	}
+
+	public String getId() {
+		return _id;
+	}
+	public void setId(String _id) {
+		this._id = _id;
+	}
+	
+	public String getRev() {
+		return _rev;
+	}
+	public void setRev(String _rev) {
+		this._rev = _rev;
+	}
+
+	
+
+	/*public boolean isValid(){
 		if(age!=null && name!=null && !name.isEmpty()){
 			return true;
 		}
@@ -53,5 +106,6 @@ public class User {
 			return false;
 		}
 	}
+	*/
 
 }
